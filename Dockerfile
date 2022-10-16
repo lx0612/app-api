@@ -21,9 +21,14 @@ RUN python -m venv /py && \
     rm -rf /tmp/ && \
     adduser \
         --disabled-password \
-        --no-create-home \
+        --gecos "" \
+        --home /app \
         django-user
+    # adduser \
+    #     --disabled-password \
+    #     --no-create-home \
+    #     django-user
 
-
+RUN chmod +x /app
 ENV PATH="/py/bin:${PATH}"
-
+USER django-user
