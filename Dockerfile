@@ -19,16 +19,16 @@ RUN python -m venv /py && \
     fi && \
     # /py/bin/pip install linux-headers &&\
     rm -rf /tmp/ && \
-    adduser \
-        --disabled-password \
-        --gecos "" \
-        --home /app \
-        django-user
     # adduser \
     #     --disabled-password \
-    #     --no-create-home \
+    #     --gecos "" \
+    #     --home /app \
     #     django-user
-
+    adduser \
+        --disabled-password \
+        --no-create-home \
+        django-user
+RUN chown django-user -R /app
 RUN chmod +x /app
 ENV PATH="/py/bin:${PATH}"
 USER django-user
